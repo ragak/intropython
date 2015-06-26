@@ -1,0 +1,31 @@
+In python, three types of scalar objects
+-int (integers)
+-float (floating point numbers)
+-bool (Boolean operators)
+
+note - when doing division, if you have two integers, the
+'/' operator will give an integer with no remainder. to get
+remainder, use % sign. 
+** is power (i**j = i to the power j)
+
+when doing comparisons, == here means 'is it equal to', so 
+answer is a boolean operator
+eg 3==3 is TRUE
+we can do operators on booleans like so:
+a and b 
+this returns True if both a and b are true
+not a
+this returns True if a is false
+
+can convert floats and ints: 
+int(3.0) is 3
+float(3) is 3.0
+
+you can multiply strings!
+3*'a' gives you 'aaa'
+'a' + 'b' gives you 'ab'
+'a'+str(123) gives you 'a123'
+to ask length of strings - len('abc') gives 3
+can use indexing in strings - 'abc'[0] is 'a'
+it can also count backwards - 'abc'[-1] is 'c'
+slicing can be used to get out substrings: 'abc'[1:3] gives 'bc'
