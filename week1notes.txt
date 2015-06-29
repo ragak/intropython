@@ -29,3 +29,21 @@ to ask length of strings - len('abc') gives 3
 can use indexing in strings - 'abc'[0] is 'a'
 it can also count backwards - 'abc'[-1] is 'c'
 slicing can be used to get out substrings: 'abc'[1:3] gives 'bc'
+
+raw_input function waits for user input
+eg name=raw_input('Enter your name:')
+then if you type "Raga", every time you type "name" you'll get "Raga"
+
+If, else conditional operations with COLON in python, and since there are no brackets,
+indentations matter, they're not just aesthetic!
+eg
+x=raw_input('Pick and integer:')
+if x%2==0: #if remainder of x/2 is 0
+    print('')
+    print('Even')
+else:
+    print('')
+    print('Odd')
+print('Done with conditional')
+
+ 

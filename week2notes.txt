@@ -1,0 +1,39 @@
+range(m,n) gives numbers from m to n (or range(n) gives 0 to n)
+
+#use min and max for this function
+def clip(lo, x, hi):
+    '''
+    Takes in three numbers and returns a value based on the value of x.
+    Returns:
+     - lo, when x < lo
+     - hi, when x > hi
+     - x, otherwise
+    '''
+    return min(lo,max(x,hi))
+
+triple quotes are notes for the user of the function - always use it!
+
+def isVowel(char):
+    '''
+    char: a single letter of any case
+
+    returns: True if char is a vowel and False otherwise.
+    '''
+    return char==str('a') or char==str('e') or char==str('i') or char==str('o') or char==str('u') or char==str('A') or char==str('E') or char==str('I') or char==str('O') or char==str('U')
+
+Important:
+you can save groups of related functions in one file and import them to use them. eg. save in a file called
+raga.py then type import raga.py. You can invoke any function by saying print raga.<function name>(args)
+
+alternatively you can use:
+from raga import * #(import everything from raga)
+<function name>(args)
+
+#using methods as functions
+great example:
+>>> s = 'abc'
+>>> s.capitalize
+<built-in method capitalize of str object at 0x104c35878>
+>>> s.capitalize()
+'Abc'
+To see everything you can do with strings, look up string methods
