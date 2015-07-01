@@ -78,3 +78,68 @@ def gcdRecur(a, b):
         ans=gcdRecur(x,y%x)
     return ans
         
+def lenIter(aStr):
+    '''
+    aStr: a string
+    
+    returns: int, the length of aStr
+    '''
+    # Your code here
+    ans=0
+    for c in aStr:
+        ans=ans+1
+    return ans
+    
+def lenRecur(aStr):
+    '''
+    aStr: a string
+    
+    returns: int, the length of aStr
+    '''
+    ans = 1
+    if aStr=='':
+        return 0
+    else:
+        return ans + lenRecur(aStr[1:])
+
+def isIn(char, aStr):
+    '''
+    char: a single character
+    aStr: an alphabetized string
+    
+    returns: True if char is in aStr; False otherwise
+    '''
+    length=len(aStr)
+    middle=int(length/2)-1
+    print "middle is " + str(middle)
+    if aStr=='':
+        return False
+    elif len(aStr)==1:
+        return char==aStr
+    elif aStr[middle]==char:
+        return True
+    else:
+        if aStr[middle]<char:
+            #print "newstring is " + aStr[middle+1:]
+            return isIn(char,aStr[middle+1:])
+        elif aStr[middle]>char:
+            #print "newstring is " + aStr[:middle]
+            return isIn(char,aStr[:middle])
+            
+
+def semordnilap(str1, str2):
+    '''
+    str1: a string
+    str2: a string
+    
+    returns: True if str1 and str2 are semordnilap;
+             False otherwise.
+    '''
+    a=len(str1)
+    b=len(str2)
+    if a!=b:
+        return False
+    elif a==1 and b==1 and str1==str2:
+        return True
+    else:
+        return str1[0]==str2[b-1] and semordnilap(str1[1:],str2[:b-1])
