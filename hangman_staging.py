@@ -24,17 +24,20 @@ def getGuessedWord(secretWord, lettersGuessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    a=''
     if len(secretWord)==1:
         if secretWord[0] in lettersGuessed:
-            return a+secretWord[0]
+            return secretWord[0]
+            #print "word is " + secretWord[0]
         else:
-            return a + '_ '
+            return '_ '
+            print "word is " + '_ '
     elif len(secretWord)==0:
-        return "no secret word"
+        print "no secret word"
     else:
         if secretWord[0] in lettersGuessed:
-            a += secretWord[0] + ' '
+            return secretWord[0] + ' ' + getGuessedWord(secretWord[1:],lettersGuessed)
+            
         else:
-            a += '_ '
-        isWordGuessed(secretWord[1:],lettersGuessed)
+            return '_ ' + getGuessedWord(secretWord[1:],lettersGuessed)
+
+        
