@@ -20,7 +20,9 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/Users/Raga/Desktop/Github/intropython/ProblemSet4/words.txt"
+#WORDLIST_FILENAME = "/Users/Raga/Desktop/Github/intropython/ProblemSet4/words.txt"
+WORDLIST_FILENAME = "C:/Users/Raga/Documents/Github/intropython/ProblemSet4/words.txt"
+
 
 def loadWords():
     """
