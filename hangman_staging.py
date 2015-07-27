@@ -16,6 +16,8 @@ def isWordGuessed(secretWord, lettersGuessed):
             return False
     else:
         return False
+
+#####
             
 def getGuessedWord(secretWord, lettersGuessed):
     '''
@@ -40,4 +42,18 @@ def getGuessedWord(secretWord, lettersGuessed):
         else:
             return '_ ' + getGuessedWord(secretWord[1:],lettersGuessed)
 
-        
+######
+def getAvailableLetters(lettersGuessed):
+    '''
+    lettersGuessed: list, what letters have been guessed so far
+    returns: string, comprised of letters that represents what letters have not
+      yet been guessed.
+    '''
+    import string
+    alphabet=string.ascii_lowercase
+    for letter in alphabet:
+        if letter in lettersGuessed:
+            #print "letter is " + str(letter)
+            alphabet = alphabet.replace(str(letter),'')
+            #print "new alphabet is " + str(alphabet.replace(str(letter),''))
+    return alphabet 
