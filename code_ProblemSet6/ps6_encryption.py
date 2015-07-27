@@ -99,8 +99,17 @@ def buildCoder(shift):
     shift: 0 <= int < 26
     returns: dict
     """
+    import string
+    lalphabet=string.ascii_lowercase
+    ualphabet=string.ascii_uppercase
+    cesar={}
+    for a in range(len(lalphabet)):
+        cesar[str(lalphabet[a])]=lalphabet[a+shift-26]
+    for b in range(len(ualphabet)):
+        cesar[str(ualphabet[b])]=ualphabet[b+shift-26]
+    return cesar
     ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    #return "Not yet implemented." # Remove this comment when you code the function
 
 def applyCoder(text, coder):
     """
@@ -111,7 +120,21 @@ def applyCoder(text, coder):
     returns: text after mapping coder chars to original text
     """
     ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    punct=string.punctuation
+    digits=string.digits
+    space=' '
+    newtext=''
+    for a in text:
+        if a in punct:
+            newtext += a
+        elif a in digits:
+            newtext += a
+        elif a==space:
+            newtext += a
+        else:
+            newtext += coder[a]
+    return newtext
+    #return "Not yet implemented." # Remove this comment when you code the function
 
 def applyShift(text, shift):
     """
@@ -126,7 +149,11 @@ def applyShift(text, shift):
     """
     ### TODO.
     ### HINT: This is a wrapper function.
-    return "Not yet implemented." # Remove this comment when you code the function
+    if 0<=shift<26:
+        coder=buildCoder(shift)
+        result=applyCoder(text, coder)
+        return result
+    #return "Not yet implemented." # Remove this comment when you code the function
 
 #
 # Problem 2: Decryption
