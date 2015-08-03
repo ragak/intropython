@@ -5,7 +5,8 @@
 import string
 import random
 
-WORDLIST_FILENAME = "/Users/Raga/Desktop/Github/intropython/code_ProblemSet6/words.txt"
+#WORDLIST_FILENAME = "/Users/Raga/Desktop/Github/intropython/code_ProblemSet6/words.txt"
+WORDLIST_FILENAME = "C:\Users\Raga\Documents\Github\intropython\words.txt"
 
 # -----------------------------------
 # Helper code
@@ -166,7 +167,34 @@ def findBestShift(wordList, text):
     returns: 0 <= int < 26
     """
     ### TODO
-    return "Not yet implemented." # Remove this comment when you code the function
+    realwords=0
+    shift=0
+    for a in range(1,27):
+        tryshift=26-a
+        newtext=applyShift(text, tryshift)
+        newwords=newtext.split(' ')
+        tempwords=0
+        for word in newwords:
+            if word in wordList:
+                tempwords += 1
+        if tempwords>realwords:
+            realwords=tempwords
+            print str(realwords)
+            shift=tryshift
+            print str(shift)
+    return shift
+                
+    #1) set real words = 0
+    #2) set shift = 0
+#    3) for all shifts from 0 to 26:
+ # 	a) applyShift(message, 26-current shift)
+#	b) split message into individual words
+#	c) count number of new real words
+#	d) if new real words > old real words:
+#		i) set real words = new real words
+#		ii) set shift = 26-current shift
+    #4) return shift
+    #return "Not yet implemented." # Remove this comment when you code the function
 
 def decryptStory():
     """
