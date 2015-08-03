@@ -84,7 +84,22 @@ class Hand(object):
         returns: Boolean (if the word was or was not made)
         """
         # Your code here
-        raise NotImplementedError()
+        # Make a copy of the hand, and try to update it
+        new_hand = self.hand.copy()
+        for letter in word:
+            try:
+                new_hand[letter] -= 1
+            except KeyError:
+                # if 'letter' isn't in the hand, we can't make the word from this hand.
+                return False
+        #if any letter counts are less than zero, we cannot make word
+        for a in new_hand.keys():
+            if new_hand[a]<0:
+                return False
+        #now update hand and return true
+        self.hand=new_hand
+        return True
+    
 
     
 myHand = Hand(7)

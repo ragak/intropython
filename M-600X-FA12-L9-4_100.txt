@@ -1,0 +1,173 @@
+ERIC GRIMSON: So we just saw that a simple
+selection sort is too expensive.
+It's quadratic, and that says it's probably going to outweigh the
+advantages of doing a logarithmic search using a binary search when
+we're done.
+We're probably better off using linear.
+But we'd really like to say, gee, isn't there a better
+way of doing this.
+And we said earlier on in this lecture that we look to reduce problems to
+known solutions that we can leverage.
+And in fact, there is a better way of doing this sort, and it takes
+advantage of another technique we saw.
+So the better version of sort is called merge sort, and it uses a
+divide-and-conquer approach.
+So what does divide-and-conquer say?
+It says break it down into smaller versions of the same problem.
+And here's the basic idea.
+If the list is of length 0 or 1, I'm done.
+It's already sorted.
+But if it's bigger than 1, let's just split the list into 2 parts, and let's
+sort each one of those.
+And of course, those may involve some additional splits, but if I can do
+that and if I can sort each of the sub-lists, and I assume I can do that
+faster than sorting an overall list, then I'm going to merge the results.
+And the merge takes advantage of the fact that the 2 lists are sorted.
+To merge, I'm just going to look at the first element of each list, and
+take the smaller one and move it to the end of the result, and keep doing
+that until one of the lists is empty, in which case, I just copy the rest of
+the list onto the end of the result.
+So another way of saying it is, given 2 sorted lists, I'm always picking off
+the smallest element and adding it into the new list that I'm creating.
+And I can do that, we hope, quite efficiently.
+OK.
+With that in mind, let's just look at an idea of this and then we'll look at
+writing the code for it.
+So the idea of merging is--
+Again, as I said, I'm going to start off with, let's look at 2 lists.
+Let's imagine that I've got 2 lists here that have been sorted, and I want
+to merge them together.
+And we're going to worry separately about how I sort them, although that's
+obviously just going to be a recursive version of the same thing.
+And here's where I am.
+If I've got two lists here, I'm going to take the smallest or first element
+of each one and then do that comparison, and I'm going to take the
+smallest one of those and move it into the result.
+And when I do that--
+Now, again, I've taken that one off of that first list.
+I've still got 2 sorted lists.
+Again, I take the first element of each.
+I'm going to do that comparison.
+And I'm going to take the smallest one and move that into the result.
+Now you can see I can continue that at each stage.
+And by the way, in that case, I remove this one from that list.
+So at each stage, I'm simply taking the first element of each, looking at
+the smallest one, adding it into the result.
+Taking the first element of each, taking the smallest one, adding it in
+the result.
+Taking the first element of each, taking the smallest one, and I keep
+walking through that stage until I get to the point where one of
+the lists is empty.
+And at that point, I simply copy this entire list onto the end of that list.
+So you notice now, because these lists are sorted, I'm not looking at
+everything in them.
+I know that the smallest element's at the front.
+So the merging step actually works quite nicely.
+OK, if that's the case, let's now look at what's the
+complexity of this algorithm.
+Doing the comparison, that's constant.
+Doing the copying, that's constant.
+So all I really have to ask is, how many comparisons do I do.
+If the combination of the two lengths of the lists is O(len(L)), I've got to
+do at most L comparisons, because I've simply got to look at each element
+until I merge them in.
+In terms of the number of copies, well, that's O(len(L1) + len(L2)), or
+the length of L overall, if you like.
+So, in fact, merging is linear in the length of the list.
+Cool.
+It says I can merge things in an amount of time that's linear in the
+length of the list.
+OK, with that in mind, let's put this together.
+So here's now code to do the merge, and it's really pretty
+straightforward.
+I'm going to set up our result up here.
+I've got two indices, I and J. And while they're both less than the end
+of each of their respective lists, I'm just going to compare using some
+comparison operator.
+Could be less than.
+I'm going to compare the two of them, and I'm going to basically say, if the
+left one is less than the right one, I'm going to add it in and increase i.
+Otherwise, the right one's the one I want.
+I'm going to add it in and I'm going to increase j.
+Oh, that's nice.
+That's basically saying the equivalent of me removing things from the list.
+I'm simply changing where I am in either the left list
+or the right list.
+When I get to the point where I'm almost done, I'm going to check it.
+And to see that, I'm going to say, as long as i is less than the length--
+I'm sorry.
+I'm saying this poorly.
+Up here, I've got both of them still have something in them.
+When that's no longer true, if there's still stuff left in the left one, I'll
+add them in.
+Otherwise, I know if there's still stuff left in the right one, I'll add
+them in and I'm going to return the list.
+So this is just a piece of code that captures that idea of merging.
+It says, basically, let me do the merge by walking down each of the
+lists, doing the comparison to see which one's smaller, adding it into
+the result and changing that index.
+And when I've gotten to the case where one of the lists is empty, I'll simply
+add in the remainder of whichever list still has things in them.
+OK.
+We can now put this together to create a merge sort algorithm, and that is
+going to be something that's going to do sorting by breaking down the lists
+into sub-lists, sorting each one of those, and then merging the results
+together using the merge operation.
+So what does it say?
+It says, if I've got a list of length 0 or 1, just return a
+copy of that list.
+Notice what I'm doing here-- by the way, I should have said-- is I'm using
+the operator function of less than to set up something that's going to do
+the comparison.
+So I'm going to use a typical less than.
+And this says I can pass in, if I want to, some other argument for compare.
+The default's just to use the standard less than operation.
+All right.
+If the list is of length 0 or 1, I'm done.
+Otherwise, what do I do?
+Well, it's really cool.
+I compute the midpoint.
+I'm basically taking the length of the list divided by 2 and making sure I
+get an integer back.
+And then I take the lower half of the list and I do merge sort on that.
+I take the upper half of the list and I do merge sort on that.
+And that says, oh yes, recursively, I'm going to keep doing
+merge sort on these.
+I know by the fact that I keep breaking it down into a smaller
+version of the same problem that, when this is done, it's going to give me
+back a sorted list.
+And having sorted the left and right versions, I simply merge the two, and
+that gives me back the solution I want.
+Cool.
+It says, I've recursively broken this down so that I do a merge sort on
+smaller versions of each of the 2 lists, and that will keep doing it
+until I get to things that I'm just merging lists of length 0 or 1.
+When I'm done with all of that, I do the merge with the overall
+thing and I'm set.
+OK, now, what's the complexity?
+Well, we know that the complexity of merge is O(len(L)).
+We just argued that earlier.
+It says if I got 2 lists, who the sum of their lengths is of length L. I've
+got to walk through each one of them at least once to do the merge, but no
+more than once so the merge is of O(len(L)).
+So merge is linear.
+What's merge sort?
+Well, it's going to be a combination of linear in the length of the list
+times the number of calls to merge.
+We just saw that with merge sort.
+We have to go through the list to do merge sort on the 2 sub-lists twice.
+So we're doing a merge sort on 2 sub-lists.
+How many times do we call merge?
+Well, that's the same as the O(len(L)) * the number of calls to mergesort).
+And what's that?
+Well, we just saw that that was logarithmic because we're breaking it
+down in half at each stage.
+So this is just a combination of the length of the list times the log of
+the length of the list, and that says that this is log linear, which is
+actually fantastic.
+So, O(n log n) where n is the len(L), and that really does say fantastic.
+I've gotten out a very efficient algorithm, an n log n algorithm.
+You should note, it does come with a little bit of a cost, and the cost is
+in space, as it has to make a new copy of the list.
+But other than that, it's really very cool.
+And that's wonderful.

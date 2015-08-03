@@ -166,7 +166,28 @@ def findBestShift(wordList, text):
     returns: 0 <= int < 26
     """
     ### TODO
-    return "Not yet implemented." # Remove this comment when you code the function
+    realwords=0
+    shift=0
+    for a in range(1,27):
+        tryshift=26-a
+        #print "tryshift is" + str(tryshift)
+        exclude=set(string.punctuation)
+        temptext=applyShift(text, tryshift)
+        newtext=''.join(x for x in temptext if x not in exclude)
+        prenewwords=newtext.split(' ')
+        newwords=[x.lower() for x in prenewwords]
+        #print "newwords is" + str(newwords)
+        tempwords=0
+        for a in newwords:
+            if a in wordList:
+                tempwords += 1
+          #      print "tempwords is " + str(tempwords)
+        if tempwords>realwords:
+            realwords=tempwords
+           # print str(realwords)
+            shift=tryshift
+            #print str(shift)
+    return shift
 
 def decryptStory():
     """
@@ -177,6 +198,12 @@ def decryptStory():
 
     returns: string - story in plain text
     """
+    wordList=loadWords()
+    text=getStoryString()
+    shift=findBestShift(wordList, text)
+    decode=applyShift(text, shift)
+    return decode
+    
     ### TODO.
     return "Not yet implemented." # Remove this comment when you code the function
 
