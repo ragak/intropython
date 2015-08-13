@@ -108,51 +108,26 @@ class TitleTrigger(WordTrigger):
     def evaluate(self, story):
         return self.isWordIn(story.getTitle())
         
-class SubjectTrigger(WordTrigger):
-    def evaluate(self, story):
-        return self.isWordIn(story.getSubject())
 
-class SummaryTrigger(WordTrigger):
-    def evaluate(self, story):
-        return self.isWordIn(story.getSummary())
+    
+    
+    
+# TODO: SubjectTrigger
+# TODO: SummaryTrigger
 
 
 # Composite Triggers
 # Problems 6-8
 
 # TODO: NotTrigger
-class NotTrigger(Trigger):
-    def __init__(self, trigger):
-        self.trigger = trigger
-    def evaluate(self,story):
-        return not self.trigger.evaluate(story)
-
-
-
 # TODO: AndTrigger
-
-class AndTrigger(Trigger):
-    def __init__(self, trigger1, trigger2):
-        self.trigger1 = trigger1
-        self.trigger2 = trigger2
-    def evaluate(self,story):
-        return self.trigger1.evaluate(story) and self.trigger2.evaluate(story)
 # TODO: OrTrigger
-class OrTrigger(Trigger):
-    def __init__(self, trigger1, trigger2):
-        self.trigger1 = trigger1
-        self.trigger2 = trigger2
-    def evaluate(self,story):
-        return self.trigger1.evaluate(story) or self.trigger2.evaluate(story)
+
 
 # Phrase Trigger
 # Question 9
 
-class PhraseTrigger(Trigger):
-    def __init__(self, phrase):
-        self.phrase = phrase
-    def evaluate(self,story):
-        return self.phrase in story.getTitle() or self.phrase in story.getSummary() or self.phrase in story.getSubject()
+# TODO: PhraseTrigger
 
 
 #======================
@@ -167,17 +142,6 @@ def filterStories(stories, triggerlist):
     Returns: a list of only the stories for which a trigger in triggerlist fires.
     """
     # TODO: Problem 10
-    keep=[]
-    for a in stories:
-        for b in triggerlist:
-            if b.evaluate(a)==True:
-                if a not in keep:
-                    keep.append(a)
-                    #print keep
-                break
-    return keep
-    
-    
     # This is a placeholder (we're just returning all the stories, with no filtering) 
     return stories
 
@@ -201,33 +165,6 @@ def makeTrigger(triggerMap, triggerType, params, name):
 
     Returns a new instance of a trigger (ex: TitleTrigger, AndTrigger).
     """
-    instance=[]
-    if triggerType=="TITLE":
-        for a in params:
-            b=TitleTrigger(a)
-            triggerMap[name]=b
-    elif triggerType=="SUBJECT":
-        for a in params:
-            b=SubjectTrigger(a)
-            triggerMap[name]=b
-    elif triggerType=="SUMMARY":
-        for a in params:
-            b=SummaryTrigger(a)
-            triggerMap[name]=b
-    elif triggerType=="AND":
-        for a in params:
-            b=AndTrigger(a)
-            triggerMap[name]=b
-    elif triggerType=="OR":
-        for a in params:
-            b=OrTrigger(a)
-            triggerMap[name]=b
-    elif triggerType=="PHRASE":
-        for a in params:
-            b=PhraseTrigger(a)
-            triggerMap[name]=b
-        
-    
     # TODO: Problem 11
 
 
